@@ -17,7 +17,7 @@ export default function Home() {
     for (let i = 0, n = charSet.length; i < size; i++) {
       password += charSet.charAt(Math.floor(Math.random() * n))
     }
-    setPasswordValue("senha gerada foi:", password)
+    setPasswordValue(password)
     setModalVisible(true)
     //setSize('senha gerada:', size)
   }
@@ -50,10 +50,9 @@ export default function Home() {
 
       <Modal visible={modalVisible} 
         animationType="fade" 
-        transparent="true">
-
-        <ModalPassword/>
-        
+        transparent={true}>
+          
+        <ModalPassword password={passwordValue} handleClose={()=> setModalVisible(false)}/>
       </Modal>
 
 
