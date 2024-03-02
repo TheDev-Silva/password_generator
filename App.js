@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native'
 import Slider, { } from '@react-native-community/slider'
 import { useEffect, useState } from 'react'
+import { ModalPassword } from './src/components/modal';
 export default function Home() {
 
-  const [size, setSize] = useState(10)
-  const [passwordValue, setPasswordValue] = useState("")
+  const [size, setSize] = useState(10);
+  const [passwordValue, setPasswordValue] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
 
   let charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
@@ -16,6 +18,7 @@ export default function Home() {
       password += charSet.charAt(Math.floor(Math.random() * n))
     }
     setPasswordValue("senha gerada foi:", password)
+    setModalVisible(true)
     //setSize('senha gerada:', size)
   }
   
@@ -42,6 +45,19 @@ export default function Home() {
         <Text style={style.buttonText}>Gerar senha</Text>
       </TouchableOpacity>
 
+
+      
+
+      <Modal visible={modalVisible} 
+        animationType="fade" 
+        transparent="true">
+
+        <ModalPassword/>
+        
+      </Modal>
+
+
+
       <View style={style.autor}>
         <Text style={style.dev}>Desenvolvido por</Text>
         <Text style={style.textAutor}>@SilvaDev 2024</Text>
@@ -59,7 +75,7 @@ const style = StyleSheet.create({
   },
   autor: {
     position: 'absolute',
-    bottom: 2,
+    bottom: 10,
     alignItems: 'center'
   },
   dev: {
