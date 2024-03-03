@@ -8,7 +8,9 @@ export function ModalPassword({password, handleClose}) {
 
         await Clipboard.setStringAsync(password)
         alert("Senha Copia para a area transferência!")
-       
+
+        handleClose()
+        
     }
 
     return (
