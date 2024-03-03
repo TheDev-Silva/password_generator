@@ -83,20 +83,20 @@ const style = StyleSheet.create({
   
   autor: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 5,
     alignItems: 'center'
   },
   dev: {
     textTransform: 'uppercase',
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   textAutor: {
-    fontSize: 13,
+    fontSize: 10,
   },
   logo: {
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: -50,
   },
   secretKey: {  
     flexDirection:'column',
