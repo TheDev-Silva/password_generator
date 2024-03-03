@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-na
 import Slider, { } from '@react-native-community/slider'
 import { useEffect, useState } from 'react'
 import { ModalPassword } from './src/components/modal';
+
+
 export default function Home() {
 
   const [size, setSize] = useState(10);
@@ -9,6 +11,8 @@ export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
 
 
+  let init = 'Silva'
+  let finish = '2024'
   let charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   function generat_Password() {
 
@@ -17,17 +21,21 @@ export default function Home() {
     for (let i = 0, n = charSet.length; i < size; i++) {
       password += charSet.charAt(Math.floor(Math.random() * n))
     }
-    setPasswordValue(password)
+    setPasswordValue(init+password+finish)
     setModalVisible(true)
     //setSize('senha gerada:', size)
   }
-  
+
 
   return (
     <View style={style.container}>
-      <Image source={require("./src/assets/logo.png")}
-        style={style.logo}
-      />
+      <View style={style.secretKey}>
+        <Image source={require("./src/assets/logo2.png")}
+          style={style.logo}
+        />
+      </View>
+
+
       <Text style={style.title}>{size} Caracteres</Text>
       <View style={style.area}>
         <Slider
@@ -46,13 +54,13 @@ export default function Home() {
       </TouchableOpacity>
 
 
-      
 
-      <Modal visible={modalVisible} 
-        animationType="fade" 
+
+      <Modal visible={modalVisible}
+        animationType="fade"
         transparent={true}>
-          
-        <ModalPassword password={passwordValue} handleClose={()=> setModalVisible(false)}/>
+
+        <ModalPassword password={passwordValue} handleClose={() => setModalVisible(false)} />
       </Modal>
 
 
@@ -72,6 +80,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f4f4f4'
   },
+  
   autor: {
     position: 'absolute',
     bottom: 10,
@@ -86,10 +95,17 @@ const style = StyleSheet.create({
     fontSize: 13,
   },
   logo: {
-    marginBottom: 60,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+  secretKey: {  
+    flexDirection:'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold'
   },
   area: {
