@@ -6,29 +6,29 @@ const useStorage = () => {
    const getItem = async (key) => {
       try {
          const passwords = await AsyncStorage.getItem(key)
-         return JSON.parse(passwords) | []
+         return JSON.parse(passwords) || []
 
       } catch (error) {
-         console.log(error)
+         console.log("Erro ao buscar",error)
          return []
       }
    };
 
    //SALVAR
-   const save = async (key, value) => {
+   const saveItem = async (key, value) => {
 
       try {
-         let passwors = await getItem(key);
+         let passwords = await getItem(key);    
 
-         passwors.push(value)
+         passwords.push(value)
 
-         await AsyncStorage.setItem(key, JSON.stringify(passwors))
-
+         await AsyncStorage.setItem(key, JSON.stringify(passwords))
+         console.log("Item salvo com sucesso!", value)
       } catch (error) {
          console.log("ERRO AO SALVAR", error)
-         return
+         return myPasswords
       }
-
+      
    };
 
    //DELETAR
@@ -44,9 +44,10 @@ const useStorage = () => {
 
       } catch (error) {
          console.log("ERROR AO DELETAR", error)
+         return []
       }
    }
-   return { getItem, save, remove }
+   return { getItem, saveItem, remove }
 
 }
 export default useStorage;

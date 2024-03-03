@@ -1,16 +1,22 @@
 import { StyleSheet, Text, TouchableOpacity, View, Pressable } from "react-native";
 import * as Clipboard from 'expo-clipboard'
+import useStorage from '../../hooks/useStorage'
 
-export function ModalPassword({password, handleClose}) {
+export function ModalPassword({ password, handleClose }) {
 
+    const { getItem, saveItem, remove } = useStorage();
 
-    async function handleCopyPassword(){
+    async function handleCopyPassword() {
 
         await Clipboard.setStringAsync(password)
         alert("Senha Copia para a area transferência!")
 
-        handleClose()
+
+        await saveItem("@pass", password)
         
+        
+        handleClose()
+
     }
 
     return (
@@ -19,14 +25,14 @@ export function ModalPassword({password, handleClose}) {
                 <Text style={style.title}>Senha Gerada</Text>
                 <Pressable style={style.innerPassword} onLongPress={handleCopyPassword}>
                     <Text style={style.password}>
-                    {password}    
+                        {password}
                     </Text>
                 </Pressable>
                 <View style={style.buttonArea}>
                     <TouchableOpacity style={style.buttonVoltar} onPress={handleClose}>
                         <Text style={style.titleVoltar}>Voltar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={style.buttonSalvar}>
+                    <TouchableOpacity style={style.buttonSalvar} onPress={handleCopyPassword}>
                         <Text style={style.titleSalvar}>Salvar senha</Text>
                     </TouchableOpacity>
                 </View>
@@ -93,7 +99,7 @@ const style = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: "#EDBB00",
         padding: 15,
-        borderRadius: 8    
+        borderRadius: 8
     },
     titleVoltar: {
         color: '#000',
@@ -103,5 +109,5 @@ const style = StyleSheet.create({
         color: '#000',
         fontSize: 18
     }
-    
+
 })

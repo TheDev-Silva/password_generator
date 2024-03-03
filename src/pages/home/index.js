@@ -63,11 +63,10 @@ export function Home() {
         <ModalPassword password={passwordValue} handleClose={() => setModalVisible(false)} />
       </Modal>
 
-
-
       <View style={style.autor}>
         <Text style={style.dev}>Desenvolvido por</Text>
-        <Text style={style.textAutor}>@SilvaDev 2024</Text>
+        <Text style={style.textAutor}>@SilvaDev 2024 versão 1.0</Text>
+        <Text style={style.textAutor}>versão 1.0</Text>
       </View>
     </View>
   )
