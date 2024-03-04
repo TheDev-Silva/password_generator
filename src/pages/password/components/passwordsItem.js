@@ -2,13 +2,15 @@ import { Text, StyleSheet, Pressable, ScrollView } from 'react-native'
 
 export function PasswordsItem({ data, removePassword }) {
 
-    {/*  */ }
+    const [password, motivo] = data.split('|')
+
     return (
         <ScrollView style={style.scrollView}>
             <Pressable
                 onLongPress={removePassword}
                 style={style.container}>
-                <Text style={style.textPassword}>{data}</Text>
+                <Text style={style.textPassword}>{password}</Text>
+                {motivo && <Text style={style.textMotivo}>Motivo: {motivo}</Text>}
             </Pressable>
         </ScrollView>
 
@@ -17,7 +19,7 @@ export function PasswordsItem({ data, removePassword }) {
 
 const style = StyleSheet.create({
     scrollView: {
-        flexGrow: 1,    
+        flexGrow: 1,
     },
     container: {
         flex: 1,
@@ -32,5 +34,9 @@ const style = StyleSheet.create({
     textPassword: {
         color: '#fff',
         fontSize: 18,
+    },
+    textMotivo: {
+        color: '#fff',
+        fontSize: 18
     }
 })

@@ -12,7 +12,7 @@ export function Home() {
 
 
   let init = 'Silva'
-  let finish = '2024'
+  let finish = '_2024'
   let charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
   function generat_Password() {
 

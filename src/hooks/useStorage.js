@@ -2,7 +2,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const useStorage = () => {
 
-   //ADICIONAR
+
+
+
+
+
+   //ADICIONAR SENHA
    const getItem = async (key) => {
       try {
          const passwords = await AsyncStorage.getItem(key)
@@ -15,15 +20,15 @@ const useStorage = () => {
    };
 
    //SALVAR
-   const saveItem = async (key, value) => {
+   const saveItem = async (key, value, motivo) => {
 
       try {
          let passwords = await getItem(key);    
-
-         passwords.push(value)
+         const valor = `${value}|${motivo}`
+         passwords.push(valor)
 
          await AsyncStorage.setItem(key, JSON.stringify(passwords))
-         console.log("Item salvo com sucesso!", value)
+         console.log("Item salvo com sucesso!", valor)
       } catch (error) {
          console.log("ERRO AO SALVAR", error)
          return myPasswords
