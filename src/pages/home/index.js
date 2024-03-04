@@ -6,14 +6,12 @@ import { ModalPassword } from '../../components/modal';
 
 export function Home() {
 
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(6);
   const [passwordValue, setPasswordValue] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
-
-  let init = 'Silva'
   let finish = '_2024'
-  let charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+  let charSet = 'SILVAsilva1234567890'
   function generat_Password() {
 
     let password = "";
@@ -21,7 +19,7 @@ export function Home() {
     for (let i = 0, n = charSet.length; i < size; i++) {
       password += charSet.charAt(Math.floor(Math.random() * n))
     }
-    setPasswordValue(init+password+finish)
+    setPasswordValue(password+finish)
     setModalVisible(true)
     //setSize('senha gerada:', size)
   }
@@ -41,10 +39,10 @@ export function Home() {
         <Slider
           style={{ height: 50 }}
           minimumValue={6}
-          maximumValue={20}
+          maximumValue={10}
           maximumTrackTintColor={"#000"}
-          minimumTrackTintColor={"#00ea3d"}
-          thumbTintColor={"#009933"}
+          minimumTrackTintColor={"#EDBB00"}
+          thumbTintColor={"#00ea3d"}
           value={size}
           onValueChange={(value) => setSize(value.toFixed(0))}
         />
@@ -64,7 +62,7 @@ export function Home() {
       </Modal>
 
       <View style={style.autor}>
-        <Text style={style.dev}>Desenvolvido por</Text>
+        <Text style={style.dev}>Criado e Desenvolvido por</Text>
         <View style={style.textArea}>
           <Text style={style.textAutor}>@SilvaDev 2024</Text>
           <Text style={style.textAutor}>versão 1.0</Text>

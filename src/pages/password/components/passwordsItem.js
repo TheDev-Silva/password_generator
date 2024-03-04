@@ -1,56 +1,103 @@
 import { useState } from 'react'
-import { Text, StyleSheet, Pressable, ScrollView } from 'react-native'
+import { Text, StyleSheet, Pressable, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 export function PasswordsItem({ data, removePassword }) {
 
-    const [passwordVisible, setPasswordVisible] = useState(false)
-    const [password, motivo] = data.split('|')
-    const Tab = createBottomTabNavigator()
+   const [passwordVisible, setPasswordVisible] = useState(false)
+   const [password, motivo] = data.split('|')
+   const Tab = createBottomTabNavigator()
 
-    const togglePasswordVisibility = () => {
+   const togglePasswordVisibility = () => {
 
-        setPasswordVisible(!passwordVisible)
-    }
+      setPasswordVisible(!passwordVisible)
+   }
 
-    return (
-        <ScrollView style={style.scrollView}>
-            <Pressable
-                onLongPress={removePassword}
-                onPress={togglePasswordVisibility}
-                style={style.container}>
-                <Text style={style.textMotivo}>{motivo}</Text>
-                <Ionicons name={passwordVisible ? 'ios-arrow-up' : 'ios-arrow-down'} size={18} color={'#fff'}/>
-                {passwordVisible && <Text style={style.textPassword}>{password}</Text>}
-            </Pressable>
-        </ScrollView>
+   return (
+      <ScrollView style={style.scrollView}>
+         <Pressable
+            onLongPress={removePassword}
+            onPress={togglePasswordVisibility}
+         >
+            <View style={style.container}>
+               <View style={style.content1}>
+                  <Text style={style.textMotivo}>{motivo}</Text>
+                  <Ionicons name={passwordVisible ? 'chevron-up-outline' : 'chevron-down-outline'} size={18} color={'#fff'} />
+               </View>
+               <View style={style.compilter}>
+                  {passwordVisible && (
+                     <View style={style.textInformation}>
+                        <Text style={style.text}>senha gerada:</Text>
+                        <Text style={style.textPassword}>{password}</Text>
 
-    )
+                     </View>
+                  )}
+               </View>
+               
+            </View>
+
+         </Pressable>
+         
+
+      </ScrollView>
+
+   )
 }
 
 const style = StyleSheet.create({
-    scrollView: {
-        flexGrow: 1,
-    },
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: "#0e0e0e",
-        padding: 14,
-        width: "100%",
-        marginBottom: 10,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderRadius: 8
-    },
-    textPassword: {
-        color: '#fff',
-        fontSize: 16,
-    },
-    textMotivo: {
-        color: '#fff',
-        fontSize: 18,
-        textTransform: 'uppercase'
-    }
+   scrollView: {
+      flexGrow: 1,
+   },
+   container: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: "#0e0e0e",
+      padding: 14,
+      width: "100%",
+      marginBottom: 5,
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+      borderRadius: 8,  
+   },
+   content1: {
+      flex: 1,
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-between'
+   },
+   textMotivo: {
+      color: '#fff',
+      fontSize: 18,
+      textTransform: 'uppercase'
+   },
+
+   compilter: {
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'center',
+      
+   },
+   textInformation: {
+      flexDirection: 'row',
+      width: '109%',
+      padding: 15,
+      marginTop: 15,
+      backgroundColor: '#edbb00',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderBottomRightRadius: 8,
+      borderBottomLeftRadius: 8,
+      marginBottom: -15
+   },
+   text: {
+      textTransform: 'uppercase',
+      color: '#000'
+   },
+   textPassword: {
+      fontWeight: 'bold',
+      color: '#000',
+      fontSize: 18,
+   },
+
 })
