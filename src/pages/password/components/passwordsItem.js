@@ -2,25 +2,31 @@ import { useState } from 'react'
 import { Text, StyleSheet, Pressable, ScrollView, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import useStorage from '../../../hooks/useStorage'
 
 export function PasswordsItem({ data, removePassword }) {
 
    const [passwordVisible, setPasswordVisible] = useState(false)
    const [password, motivo] = data.split('|')
-   const Tab = createBottomTabNavigator()
+   const { remove } = useStorage()
 
    const togglePasswordVisibility = () => {
 
       setPasswordVisible(!passwordVisible)
    }
+   async function removeItem() {
+
+      await remove('@pass', removePassword)
+   }
 
    return (
-      <ScrollView style={style.scrollView}>
+      <ScrollView style={style.scrollView} >
          <Pressable
-            onLongPress={removePassword}
+            
             onPress={togglePasswordVisibility}
+            style={{flexDirection: 'row' }}
          >
-            <View style={style.container}>
+            <View style={style.container} onLongPress={removePassword} >
                <View style={style.content1}>
                   <Text style={style.textMotivo}>{motivo}</Text>
                   <Ionicons name={passwordVisible ? 'chevron-up-outline' : 'chevron-down-outline'} size={18} color={'#fff'} />
@@ -29,16 +35,23 @@ export function PasswordsItem({ data, removePassword }) {
                   {passwordVisible && (
                      <View style={style.textInformation}>
                         <Text style={style.text}>senha gerada:</Text>
-                        <Text style={style.textPassword}>{password}</Text>
+
+                        
+                        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                           <Text style={style.textPassword}>{password}</Text>
+                           <TouchableOpacity onPress={removePassword}><Ionicons name="ban" size={24} color={"#ff0000"} /></TouchableOpacity>
+                        </View>
+
 
                      </View>
                   )}
                </View>
-               
-            </View>
 
+
+            </View>
+              
          </Pressable>
-         
+
 
       </ScrollView>
 
@@ -58,7 +71,7 @@ const style = StyleSheet.create({
       marginBottom: 5,
       alignItems: 'flex-start',
       justifyContent: 'space-between',
-      borderRadius: 8,  
+      borderRadius: 8,
    },
    content1: {
       flex: 1,
@@ -76,7 +89,7 @@ const style = StyleSheet.create({
       flexDirection: 'row',
       width: '100%',
       justifyContent: 'center',
-      
+
    },
    textInformation: {
       flexDirection: 'row',
@@ -98,6 +111,8 @@ const style = StyleSheet.create({
       fontWeight: 'bold',
       color: '#000',
       fontSize: 18,
+      paddingRight: 12
    },
+   
 
 })

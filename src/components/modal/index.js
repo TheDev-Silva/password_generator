@@ -11,11 +11,15 @@ export function ModalPassword({ password, handleClose }) {
    async function handleCopyPassword() {
 
       await Clipboard.setStringAsync(password)
-      alert("Senha Copia para a area transferência!")
+      if (Clipboard) {
 
+         alert("Senha Copia para a area transferência!")
+      }
 
       await saveItem("@pass", password, motivo)
-
+      if(saveItem){
+         alert("salvo com sucesso!")
+      }
 
       handleClose()
 
