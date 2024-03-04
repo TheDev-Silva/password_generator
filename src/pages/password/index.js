@@ -89,23 +89,24 @@ const style = StyleSheet.create({
    header: {
       marginTop: -22,
       backgroundColor: '#EDBB00',
-      paddingTop: 58,
+      paddingTop: 40,
       paddingBottom: 20,
       paddingLeft: 35,
       paddingRight: 14,
 
    },
    title: {
-      fontSize: 18,
+      fontSize: 20,
       color: '#000',
       textTransform: 'uppercase',
       fontWeight: "bold",
-      letterSpacing: 2
+      letterSpacing: 1
    },
    content: {
       flex: 1,
-      paddingLeft: 14,
-      paddingRight: 14
+      flexDirection: 'column',
+      paddingLeft: 10,
+      paddingRight: 10,
    },
    modalView: {
       position: 'absolute',

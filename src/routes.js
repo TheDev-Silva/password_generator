@@ -11,16 +11,16 @@ export function Routes() {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name='Home'
+                name='HOME'
                 component={Home}
                 options={{
                     tabBarShowLabel: false,
                     headerShow: false,
                     tabBarIcon: ({focused, size, color}) => {
                         if(focused){
-                            return <Ionicons size={size} color="black" name="home"/>
+                            return <Ionicons size={size} color="#edbb00" name="home"/>
                         }
-                        return <Ionicons size={size} color={color} name="home-outline"/>
+                        return <Ionicons size={size} color="black" name="home"/>
                     }
                 }}
             />
@@ -30,11 +30,11 @@ export function Routes() {
                 options={{
                     tabBarShowLabel: false,
                     headerShow: false,
-                    tabBarIcon: ({focused, size, color}) => {
+                    tabBarIcon: ({focused, size}) => {
                         if(focused){
-                            return <Ionicons size={size} color="black" name="lock-open"/>
+                            return <Ionicons size={size} color="#edbb00" name="lock-open"/>
                         }
-                        return <Ionicons size={size} color={color} name="lock-closed-outline"/>
+                        return <Ionicons size={size} color="black" name="lock-closed"/>
                     }
                 }}
 

@@ -17,15 +17,14 @@ export function PasswordsItem({ data, removePassword }) {
 
 const style = StyleSheet.create({
     scrollView: {
-        flexGrow: 1,
-        
+        flexGrow: 1,    
     },
     container: {
         flex: 1,
         backgroundColor: "#0e0e0e",
         padding: 14,
         width: "100%",
-        marginBottom: 8,
+        marginBottom: 10,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 8

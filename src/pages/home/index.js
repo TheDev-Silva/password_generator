@@ -65,8 +65,11 @@ export function Home() {
 
       <View style={style.autor}>
         <Text style={style.dev}>Desenvolvido por</Text>
-        <Text style={style.textAutor}>@SilvaDev 2024 versão 1.0</Text>
-        <Text style={style.textAutor}>versão 1.0</Text>
+        <View style={style.textArea}>
+          <Text style={style.textAutor}>@SilvaDev 2024</Text>
+          <Text style={style.textAutor}>versão 1.0</Text>
+        </View>
+        
       </View>
     </View>
   )
@@ -84,6 +87,11 @@ const style = StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     alignItems: 'center'
+  },
+  textArea: {
+    flexDirection: 'row',
+    width: '60%',
+    justifyContent: 'space-around'
   },
   dev: {
     textTransform: 'uppercase',
